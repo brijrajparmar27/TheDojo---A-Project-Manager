@@ -1,0 +1,5 @@
+.header{
+    width: 100vh;
+    height: fit-content;
+    grid-area: header;
+}
