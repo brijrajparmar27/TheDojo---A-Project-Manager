@@ -4,7 +4,7 @@ import { auth } from "../Firebase/Config";
 
 const useSignup = () => {
 
-    const signup = ({ email, pass }) => {
+    const signup = ({ email, pass, username }) => {
         console.log(email,pass);
         createUserWithEmailAndPassword(auth, email, pass).then((user) => {
             console.log(user);
