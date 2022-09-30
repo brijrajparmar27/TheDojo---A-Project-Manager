@@ -83,7 +83,22 @@
     font-size: 18px;
 }
 
+.auth .right_section .right_content .form_contain form .error_msg{
+    color: red;
+    font-size: 16px;
+    padding: 4px;
+    background-color: rgb(255, 207, 198);
+}
+
+.auth .right_section .right_content .form_contain form .loader{
+    background-color: transparent;
+    height: 70px;
+}
+
 .auth .right_section .right_content .form_contain form .submit_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     font-size: 18px;
     outline: none;
@@ -92,4 +107,6 @@
     color: white;
     border-radius: 10px;
     cursor: pointer;
+    overflow-y: hidden;
+    height: 50px;
 }

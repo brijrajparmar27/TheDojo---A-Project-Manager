@@ -1,12 +1,25 @@
 import { signInWithEmailAndPassword } from "firebase/auth"
+import { useState } from "react"
 import { auth } from "../Firebase/Config"
 
-const useLogin = ()=>{
-    const login = (email,pass)=>{
-        signInWithEmailAndPassword(auth,email,pass).then((user)=>{
-            console.log(user)
-        })
+const useLogin = () => {
+    const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(false)
+
+    const login = (email, pass) => {
+        setLoading(true)
+        signInWithEmailAndPassword(auth, email, pass)
+            .then((user) => {
+                console.log(user)
+                setError(null);
+                setLoading(false)
+            })
+            .catch((e)=>{
+                setError(e.message)
+                console.log(e.message);
+                setLoading(false)
+            })
     }
-    return {login}
+    return { login , error, loading };
 }
 export default useLogin;
