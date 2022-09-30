@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Header from './Components/Header/Header'
 import Navbar from './Components/Navbar/Navbar'
+import Sidebar from './Components/Sidebar/Sidebar'
 import useAuthContext from './Hooks/ContextHooks/useAuthContext'
 import useAuthState from './Hooks/useAuthState'
 import Auth from './Pages/Auth/Auth'
@@ -32,6 +33,7 @@ function App() {
               <Route path="/create" element={user ? <Create /> : <Navigate to="/auth" />} />
             </Routes>
           </div>
+          {user && <Sidebar/>}
         </BrowserRouter>
       </div>
       }

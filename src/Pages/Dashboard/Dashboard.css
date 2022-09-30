@@ -1,5 +1,5 @@
 .dashboard{
-    /* background-color: aqua; */
+    background-color: var(--white_bg);
     width: 100%;
     height: 100%;
 }

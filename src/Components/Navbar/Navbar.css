@@ -1,5 +1,5 @@
 .navbar {
-    width: 300px;
+    width: 25%;
     height: 100%;
     background-color: var(--black);
     color: white;
@@ -55,7 +55,7 @@
     border-bottom-left-radius: 20px;
     width: 85%;
     padding: 10px;
-    background-color: white;
+    background-color: var(--white_bg);
     color: black;
     display: flex;
     gap: 10px;

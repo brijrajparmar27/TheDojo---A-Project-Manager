@@ -1,0 +1,7 @@
+.sidebar{
+    background-color: white;
+    width: 20%;
+}
+.sidebar .section_title{
+    padding: 30px 20px;
+}
