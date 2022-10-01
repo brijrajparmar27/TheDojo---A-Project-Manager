@@ -1,7 +1,50 @@
 .sidebar{
     background-color: white;
     width: 20%;
+    display: flex;
+    flex-direction: column  ;
+}
+.online{
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: rgb(42, 235, 42);
+    box-shadow: 0px 0px 5px 1px rgba(0, 255, 0, 0.384);
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
 }
 .sidebar .section_title{
     padding: 30px 20px;
+}
+.sidebar .team_contain{
+    padding:0px 10px 40px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    overflow-y: scroll;
+    /* background-color: aqua; */
+    justify-content: center;
+}
+.sidebar .team_contain .team_member{
+    /* background-color: bisque; */
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+.sidebar .team_contain .team_member .avatar_contain{
+    position: relative;
+    height: 40px;
+    width: 40px;
+    background-color: rgb(228, 228, 228);
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.sidebar .team_contain .team_member .member_name{
+    font-size:12px
 }

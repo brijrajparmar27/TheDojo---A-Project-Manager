@@ -6,14 +6,16 @@ import useLogout from "../../Hooks/useLogout";
 import useUploadImage from "../../Hooks/useUploadImage";
 import useAuthContext from "../../Hooks/ContextHooks/useAuthContext";
 import useUpdateInfo from "../../Hooks/useUpdateInfo";
+import useCollection from "../../Hooks/useCollection";
 
 const Header = () => {
 
     const [showPopup, setShowPopup] = useState(false);
     const { logout } = useLogout();
     const { upload } = useUploadImage();
-    const {updateDP} = useUpdateInfo();
-    const {user,setUser} = useAuthContext();
+    const { updateDP } = useUpdateInfo();
+    const { user, setUser } = useAuthContext();
+    const { updateUser } = useCollection();
 
     const inputFile = useRef(null);
 
@@ -31,10 +33,9 @@ const Header = () => {
 
             if (validImages.includes(extention)) {
                 console.log("valid image");
-                let url = await upload("ProfilePictures/" + user.uid+".jpeg", e.target.files[0]);
+                let url = await upload("ProfilePictures/" + user.uid + ".jpeg", e.target.files[0]);
                 updateDP(url);
-                setUser(prev=>({...prev}));
-                
+                updateUser(user.uid, { image: url });
             }
             else {
                 console.log("invalid format");
