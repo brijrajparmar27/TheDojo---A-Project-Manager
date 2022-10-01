@@ -43,22 +43,28 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:flex-end;
+    align-items: flex-end;
     width: 100%;
     gap: 20px;
     height: fit-content;
 }
 
-.navbar .section_navig {
+.navbar .section_link {
     cursor: pointer;
+    text-decoration: none;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     width: 85%;
     padding: 10px;
-    background-color: var(--white_bg);
-    color: black;
+    background-color: var(--black);
+    color: white;
     display: flex;
     gap: 10px;
     justify-content: flex-start;
     align-items: center;
+}
+
+.navbar .section_contain .active {
+    background-color: var(--white_bg);
+    color: black;
 }

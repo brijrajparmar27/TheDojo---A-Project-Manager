@@ -1,13 +1,46 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useLogout from "../../Hooks/useLogout";
+import useUploadImage from "../../Hooks/useUploadImage";
+import useAuthContext from "../../Hooks/ContextHooks/useAuthContext";
+import useUpdateInfo from "../../Hooks/useUpdateInfo";
 
 const Header = () => {
+
     const [showPopup, setShowPopup] = useState(false);
     const { logout } = useLogout();
-    const onButtonClick = () => { }
+    const { upload } = useUploadImage();
+    const {updateDP} = useUpdateInfo();
+    const {user,setUser} = useAuthContext();
+
+    const inputFile = useRef(null);
+
+    const onButtonClick = () => {
+        inputFile.current.click();
+    };
+
+    const validImages = ["jpg", "jpeg", "png", "gif"];
+
+    const handleImageChange = async (e) => {
+        if (e.target.files[0]) {
+
+            let fileName = e.target.files[0].name;
+            let extention = fileName.substr(fileName.lastIndexOf('.') + 1).toLowerCase();
+
+            if (validImages.includes(extention)) {
+                console.log("valid image");
+                let url = await upload("ProfilePictures/" + user.uid+".jpeg", e.target.files[0]);
+                updateDP(url);
+                setUser(prev=>({...prev}));
+                
+            }
+            else {
+                console.log("invalid format");
+            }
+        }
+    }
 
     return <div className="header">
         <div className="branding_contain">
@@ -27,9 +60,9 @@ const Header = () => {
                 <input
                     type="file"
                     id="file"
-                    // ref={inputFile}
+                    ref={inputFile}
                     style={{ display: "none" }}
-                    // onChange={handleImageChange}
+                    onChange={handleImageChange}
                     accept="image/*"
                 />
                 <a
