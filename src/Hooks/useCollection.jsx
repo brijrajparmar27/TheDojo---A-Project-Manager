@@ -9,7 +9,6 @@ const useCollection = () => {
     const updateUser = async (uid, data) => {
         const ref = doc(firestore, "users", uid);
         await updateDoc(ref, data);
-
     }
 
     return { registerUser, updateUser };

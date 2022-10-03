@@ -1,4 +1,55 @@
-.create{
+.create {
     height: 100%;
     padding: 50px;
+    overflow-y: auto;
+}
+
+.create .create_contain{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 100px;
+}
+
+.create .tb:focus{
+    outline: 2px solid #2684ff !important;
+    border: none;
+}
+
+.create .tb {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+.create .submit_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 300px;
+    height: 40px;
+    font-size: 18px;
+    padding: 8px 20px;
+    background-color: var(--black);
+    color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.create .create_contain .input_contain{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.create .create_contain .input_contain .lable{
+    font-size: 14px;
+}
+
+.create .create_contain .loader {
+    height: 50px;
 }

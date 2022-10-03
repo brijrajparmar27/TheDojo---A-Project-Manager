@@ -1,5 +1,79 @@
-.dashboard{
+.dashboard {
     background-color: var(--white_bg);
     width: 100%;
     height: 100%;
+    /* padding: 50px; */
+    overflow-y: auto;
+}
+.dashboard a{
+    text-decoration: none;
+    color: black;
+}
+
+.dashboard h3 {
+    /* margin-top: 50px; */
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.dashboard h2 {
+    margin: 50px;
+}
+
+.projects_section .projects_contain {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+.projects_section .projects_contain .project_card {
+    height: 160px;
+    width: 280px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.projects_section .projects_contain .project_card .project_title {
+    font-size: 20px;
+}
+
+.projects_section .projects_contain .project_card .flair {
+    background-color: var(--black);
+    font-size: 12px;
+    width: fit-content;
+    height: fit-content;
+    padding: 2px 5px;
+    color: white;
+    border-radius: 5px;
+}
+
+.projects_section .projects_contain .project_card .details_contain {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.projects_section .projects_contain .project_card .due_date {
+    font-size: 14px;
+    color: gray
+}
+
+.projects_section .projects_contain .project_card .members_contain {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+.projects_section .projects_contain .project_card .members_contain .member_avatar {
+    height: 30px;
+    width: 30px;
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
 }

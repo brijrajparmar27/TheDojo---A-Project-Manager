@@ -9,11 +9,10 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <h2 className="section_title">Team</h2>
-            <div className="team_contain">
+            <div className="team_contain" id="style-1">
 
                 {
                     teamdata && teamdata.map((each) => {
-                        console.log(each);
                         return (
                             <div className="team_member" key={each.uid}>
                                 <div className="avatar_contain" style={{ backgroundImage: `url(${getDp(each)})` }}>
