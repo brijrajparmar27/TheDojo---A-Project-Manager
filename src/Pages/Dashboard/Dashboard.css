@@ -43,7 +43,7 @@
     font-size: 20px;
 }
 
-.projects_section .projects_contain .project_card .flair {
+.flair {
     background-color: var(--black);
     font-size: 12px;
     width: fit-content;

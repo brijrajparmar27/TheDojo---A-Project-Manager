@@ -56,7 +56,7 @@
 .project_info_bundle {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
@@ -122,6 +122,8 @@
 .comments_contain {
     flex: 1;
     display: flex;
+    /* margin-bottom: 50px; */
+    overflow-y: auto;
     flex-direction: column;
     width: 100%;
     height: 100%;
@@ -139,7 +141,16 @@
     margin: 0px 5px;
 }
 
-.comments_contain .comment .comment_avatar {
+.creator_contain{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.creator_label{
+    color: rgb(61, 61, 61);
+    font-size: 12px;
+}
+.comment_avatar {
     background-color: gainsboro;
     height: 30px;
     width: 30px;
@@ -147,6 +158,11 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50%;
+}
+
+.creator_info{
+    display: flex;
+    gap: 10px;
 }
 
 .comments_contain .comment .comment_data {

@@ -21,9 +21,9 @@ const Project = () => {
         fetchProject(id, setProjectDetails);
     }, [id])
 
-    useEffect(()=>{
+    useEffect(() => {
         comments && console.log(comments);
-    },[comments])
+    }, [comments])
 
     const handleComment = (e) => {
         e.preventDefault();
@@ -43,17 +43,30 @@ const Project = () => {
         <h2>Project</h2>
         <div className="project_section_contain">
             {projectDetails && <div className="project_details_section">
-                <div className="project_details_contain">
+                <div className="project_details_contain" id="style-1">
                     <div className="project_info_bundle">
                         <p className="project_title">
                             {projectDetails.name}
                         </p>
-                        <p className="due">
-                            {projectDetails.due}
-                        </p>
-                        <p className="creator">
-                            Created by: <span className="creator_name">{projectDetails.createdBy.name}</span>
-                        </p>
+                        <div style={{ display: "flex", gap: "10px" }}>
+                            <p className="flair">
+                                {projectDetails.category}
+                            </p>
+                            <p className="due">
+                                {projectDetails.due}
+                            </p>
+
+                        </div>
+
+                        <div className="creator_contain">
+                            <p className="creator_label">
+                                Created by
+                            </p>
+                            <div className="creator_info">
+                                <div className="comment_avatar" style={{ backgroundImage: `url(${getDP(projectDetails.createdBy.image)})` }}></div>
+                                <span className="creator_name">{projectDetails.createdBy.name}</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="content_description" dangerouslySetInnerHTML={{ __html: projectDetails.details }}>
 
@@ -76,10 +89,10 @@ const Project = () => {
                     <input type="text" name="comment" className="comment_tb" />
                     <button type="submit" value="send" className="submit_btn"><IoSend></IoSend></button>
                 </form>
-                {comments && <div className="comments_contain">
+                {comments && <div className="comments_contain" id="style-1">
                     {
                         comments.map((comment) => {
-                            return(<div className="comment" key={comment.Cid}>
+                            return (<div className="comment" key={comment.Cid}>
                                 <div className="comment_avatar" style={{ backgroundImage: `url(${getDP(comment.image)})` }}></div>
                                 <div className="comment_data">
                                     <p className="comment_name">{comment.name}</p>

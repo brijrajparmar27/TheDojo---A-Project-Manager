@@ -46,7 +46,8 @@ const Create = () => {
                     due,
                     category,
                     assigned,
-                    createdBy: { uid: user.uid, name: user.displayName, image: user.photoURL }
+                    createdBy: { uid: user.uid, name: user.displayName, image: user.photoURL },
+                    completed:false
                 }
                 createProject(data, navigate);
             };
