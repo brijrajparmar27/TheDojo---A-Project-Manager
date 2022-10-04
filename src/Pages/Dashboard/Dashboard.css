@@ -12,12 +12,19 @@
 
 .dashboard h3 {
     /* margin-top: 50px; */
-    margin-left: 50px;
-    margin-bottom: 20px;
+    /* margin-left: 50px;
+    margin-bottom: 20px; */
 }
 
 .dashboard h2 {
     margin: 50px;
+}
+
+.section_title{
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    margin-bottom: 30px;
 }
 
 .projects_section .projects_contain {
@@ -26,6 +33,22 @@
     gap: 10px;
     justify-content: center;
     padding-bottom: 50px;
+}
+.dashboard .section_title{
+    display: flex;
+    gap: 30px;
+}
+.filter_option{
+    cursor: pointer;
+}
+.dashboard .section_title .filter_contain{
+    display: flex;
+    background-color: white;
+    border: 1px solid gainsboro;
+    border-radius: 50px;
+    height: min-content;
+    gap: 20px;
+    padding: 5px 20px;
 }
 .projects_section .projects_contain .project_card {
     height: 160px;

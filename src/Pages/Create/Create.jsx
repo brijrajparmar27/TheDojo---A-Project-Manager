@@ -1,5 +1,5 @@
-import { useState } from "react";
-import RichText from "../../Components/RichText/RichText";
+import React, { useState } from "react";
+const RichText = React.lazy(() => import("../../Components/RichText/RichText"));
 import Select from "react-select";
 import "./Create.css";
 import { useEffect } from "react";
@@ -8,6 +8,9 @@ import useAuthContext from "../../Hooks/ContextHooks/useAuthContext";
 import useProject from "../../Hooks/useProject";
 import { useNavigate } from "react-router-dom";
 import loader from "../../assets/loader.svg";
+import { Timestamp } from "firebase/firestore";
+import { motion } from "framer-motion";
+import { Suspense } from "react";
 
 const Create = () => {
     const [users, setUsers] = useState([]);
@@ -34,7 +37,7 @@ const Create = () => {
 
     const handleProjectSubmit = (e) => {
         e.preventDefault();
-        let [name, details, due, category, assigned] = [e.target.name.value.trim(), RichData.trim(), e.target.date.value, Selectedcategory, assignedTo];
+        let [name, details, due, category, assigned] = [e.target.name.value.trim(), RichData.trim(), Timestamp.fromDate(new Date(e.target.date.value)), Selectedcategory, assignedTo];
         try {
             if (details.length == 0 || name.length == 0 || category.length == 0 || assigned.length == 0) {
                 throw "Fields Cannot be Empty"
@@ -47,9 +50,10 @@ const Create = () => {
                     category,
                     assigned,
                     createdBy: { uid: user.uid, name: user.displayName, image: user.photoURL },
-                    completed:false
+                    completed: false
                 }
                 createProject(data, navigate);
+                // console.log(data);
             };
         }
         catch (err) {
@@ -89,17 +93,42 @@ const Create = () => {
             label: "Others"
         }
     ]
-    return <div className="create" id="style-1">
+
+    const pageVariant = {
+        hide: {
+            x: "-100vw",
+            transition: {
+                type: "spring", duration: 0.5, ease: "easeInOut"
+            }
+        },
+        show: {
+            x: 0,
+            transition: {
+                type: "spring", duration: 0.5, ease: "easeInOut"
+            }
+        },
+        exit: {
+            x: "-100vw",
+            transition: {
+                type: "spring", duration: 0.5, ease: "easeInOut"
+            }
+        }
+    }
+
+    return <motion.div className="create" id="style-1" variants={pageVariant} initial='hide' animate='show'
+        exit='exit'>
         <h2>Create Project</h2>
         <form className="create_contain" onSubmit={handleProjectSubmit}>
             <div className="input_contain">
                 <p className="lable">Project Name</p>
                 <input type="text" name="name" className="tb" required />
             </div>
-            <div className="input_contain">
-                <p className="lable">Details</p>
-                <RichText setRichData={setRichData} />
-            </div>
+            <Suspense fallback={<div/>}>
+                <div className="input_contain">
+                    <p className="lable">Details</p>
+                    <RichText setRichData={setRichData} />
+                </div>
+            </Suspense>
             <div className="input_contain">
                 <p className="lable">Due Date</p>
                 <input type="date" name="date" className="tb" required />
@@ -118,6 +147,6 @@ const Create = () => {
                 {loading ? <img src={loader} className="loader" alt="loading" /> : "Save Project"}
             </button>
         </form>
-    </div>
+    </motion.div>
 }
 export default Create;

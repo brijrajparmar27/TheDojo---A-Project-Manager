@@ -1,13 +1,26 @@
 import useTeamMembers from "../../Hooks/useTeamMembers";
 import "./Sidebar.css"
 import avatar from "../../assets/avatar.svg";
+import { motion } from "framer-motion";
 const Sidebar = () => {
     const teamdata = useTeamMembers();
 
     const getDp = each => each.image ? each.image : avatar;
 
+    const navVariant = {
+        hidden: {
+            x: 100,
+        },
+        visible: {
+            x: 0,
+            transition: {
+                type: "", duration: 0.3, ease: "easeInOut", damping: 2
+            }
+        },
+    }
+
     return (
-        <div className="sidebar">
+        <motion.div className="sidebar" variants={navVariant} initial="hidden" animate="visible">
             <h2 className="section_title">Team</h2>
             <div className="team_contain" id="style-1">
 
@@ -25,7 +38,7 @@ const Sidebar = () => {
                 }
 
             </div>
-        </div>
+        </motion.div>
     )
 }
 export default Sidebar;

@@ -7,6 +7,7 @@ import useUploadImage from "../../Hooks/useUploadImage";
 import useAuthContext from "../../Hooks/ContextHooks/useAuthContext";
 import useUpdateInfo from "../../Hooks/useUpdateInfo";
 import useCollection from "../../Hooks/useCollection";
+import imageCompression from "browser-image-compression";
 
 const Header = () => {
 
@@ -25,6 +26,12 @@ const Header = () => {
 
     const validImages = ["jpg", "jpeg", "png", "gif"];
 
+    const compressionParameters = {
+        maxSizeMB: 0.1,
+        maxWidthOrHeight: 180,
+        useWebWorker: true,
+    };
+
     const handleImageChange = async (e) => {
         if (e.target.files[0]) {
 
@@ -32,8 +39,9 @@ const Header = () => {
             let extention = fileName.substr(fileName.lastIndexOf('.') + 1).toLowerCase();
 
             if (validImages.includes(extention)) {
-                console.log("valid image");
-                let url = await upload("ProfilePictures/" + user.uid + ".jpeg", e.target.files[0]);
+                const compressedFile = await imageCompression(e.target.files[0], compressionParameters);
+                
+                let url = await upload("ProfilePictures/" + user.uid + ".jpeg", compressedFile);
                 updateDP(url);
                 updateUser(user.uid, { image: url });
             }

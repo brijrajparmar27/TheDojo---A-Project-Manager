@@ -4,6 +4,7 @@ import { MdOutlineSpaceDashboard, MdAdd } from "react-icons/md";
 import useAuthContext from "../../Hooks/ContextHooks/useAuthContext";
 import { NavLink } from "react-router-dom";
 import useCurrentUser from "../../Hooks/useCurrentUser";
+import {motion} from "framer-motion";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -25,7 +26,19 @@ const Navbar = () => {
         }
     }
 
-    return <div className="navbar">
+    const navVariant = {
+        hidden: {
+            x: -100,
+        },
+        visible: {
+            x: 0,
+            transition: {
+                type: "", duration: 0.3, ease: "easeInOut", damping: 2
+            }
+        },
+    }
+
+    return <motion.div className="navbar" variants={navVariant} initial="hidden" animate="visible">
         <div className="profile_contain">
             <div style={{ backgroundImage: `url("${getDp()}")` }} className="user_avatar" />
             {credentials && <h2 className="username">{credentials.name}</h2>}
@@ -40,6 +53,6 @@ const Navbar = () => {
                 <p>New Project</p>
             </NavLink>
         </div>
-    </div>
+    </motion.div>
 }
 export default Navbar;

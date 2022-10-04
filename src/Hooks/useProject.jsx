@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore"
 import { useState } from "react";
 import { firestore } from "../Firebase/Config"
 
@@ -17,19 +17,23 @@ const useProject = () => {
             setLoading(false);
         }
     }
-    const updateProject = () => {
-
+    const updateProject = async (data,pid) => {
+        const ref = doc(firestore, "projects", pid);
+        await updateDoc(ref, data);
     }
-    const deleteProject = () => {
-        
+    const deleteProject = async (pid) => {
+        const ref = doc(firestore, "projects", pid);
+        await deleteDoc(ref);
     }
     const fetchProject = (id,setProjectDetails)=>{
+        setLoading(true);
         getDoc(doc(firestore, "projects", id)).then((doc)=>{
             if(doc.exists){
                 console.log(doc.data());
                 setProjectDetails(doc.data());
             }
         })
+        setLoading(false);
     }
 
     return { createProject, updateProject, deleteProject,fetchProject, loading, error };

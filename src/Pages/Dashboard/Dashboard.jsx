@@ -1,55 +1,116 @@
 import { useEffect } from "react";
 import useFetchProjects from "../../Hooks/useFetchProjects";
-import useLogout from "../../Hooks/useLogout";
 import "./Dashboard.css";
 import avatar from "../../assets/avatar.svg";
 import { Link } from "react-router-dom";
+import { where } from "firebase/firestore";
+import {motion} from "framer-motion";
+import useAuthContext from "../../Hooks/ContextHooks/useAuthContext";
+import { useState } from "react";
+import fetching from "../../assets/fetching.svg";
+import empty from "../../assets/empty.svg";
 
 const Dashboard = () => {
-    const { logout } = useLogout();
-    const { projects, loading, error } = useFetchProjects();
+    const [filter, setFilter] = useState(false);
+    const { projects, loading, error } = useFetchProjects(filter);
+    const { user } = useAuthContext();
+
+    const filterOptions = [
+        {
+            name: "All",
+            function: false
+        },
+        {
+            name: "Completed",
+            function: where("completed", "==", true)
+        },
+        {
+            name: "Running",
+            function: where("completed", "==", false)
+        },
+        {
+            name: "Mine",
+            function: where("createdBy.uid", "==", user.uid)
+        },
+    ]
 
     const getMemberDP = (image) => {
         return image ? image : avatar;
     }
 
-    useEffect(() => {
-        projects && console.log(projects);
-    }, [projects])
+    const pageVariant = {
+        hide: {
+            x: "-100vw",
+            transition: {
+                type: "spring", duration: 0.5, ease: "easeInOut"
+            }
+        },
+        show: {
+            x: 0,
+            transition: {
+                type: "spring", duration: 0.5, ease: "easeInOut"
+            }
+        },
+        exit: {
+            x: "-100vw",
+            transition: {
+                type: "spring", duration: 0.5, ease: "easeInOut"
+            }
+        }
+    }
 
-
-    return <div className="dashboard">
+    return <motion.div className="dashboard"
+        variants={pageVariant} initial='hide' animate='show'
+        exit='exit'>
         <h2>Dashboard</h2>
         <div className="dashboard_content">
-            {/* <div className="filter_section">
-
-            </div> */}
+            <div className="section_title">
+                <h3>Filter</h3>
+                <div className="filter_contain">
+                    {
+                        filterOptions.map((each, index) => {
+                            return <p className="filter_option" key={index} onClick={() => { setFilter(each.function) }}>
+                                {each.name}
+                            </p>
+                        })
+                    }
+                </div>
+            </div>
             <div className="projects_section">
-                <h3>Projects</h3>
+                <div className="section_title">
+                    <h3>Projects</h3>
+                </div>
                 <div className="projects_contain">
-                    {projects && projects.map((project) => {
-                        return <Link to={"/project/" + project.uid} key={project.uid}>
-                            <div className="project_card">
-                                <div className="details_contain">
-                                    <p className="project_title">
-                                        {project.name}
-                                    </p>
-                                    <p className="due_date">{project.due}</p>
-                                    <p className="flair">{project.category}</p>
+                    {
+                        loading && <img src={fetching} alt="fetching data" />
+                    }
+                    {
+                        !loading && projects && projects.length <= 0 && <img src={empty} alt="no projects" height="300px" />
+                    }
+                    {
+                        projects && !loading && projects.map((project) => {
+                            return <Link to={"/project/" + project.uid} key={project.uid}>
+                                <div className="project_card">
+                                    <div className="details_contain">
+                                        <p className="project_title">
+                                            {project.name}
+                                        </p>
+                                        <p className="due_date">Due on {project.due.toDate().toDateString()}</p>
+                                        <p className="flair">{project.category}</p>
+                                    </div>
+                                    <div className="members_contain">
+                                        {
+                                            project.assigned.map((member) => {
+                                                return <img src={getMemberDP(member.value.image)} className="member_avatar" alt="image" key={member.value.uid} />
+                                            })
+                                        }
+                                    </div>
                                 </div>
-                                <div className="members_contain">
-                                    {
-                                        project.assigned.map((member) => {
-                                            return <img src={getMemberDP(member.value.image)} className="member_avatar" alt="image" key={member.value.uid} />
-                                        })
-                                    }
-                                </div>
-                            </div>
-                        </Link>
-                    })}
+                            </Link>
+                        })}
                 </div>
             </div>
         </div>
-    </div>
+    </motion.div>
 }
 export default Dashboard;
