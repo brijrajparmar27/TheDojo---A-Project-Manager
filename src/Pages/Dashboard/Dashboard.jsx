@@ -4,7 +4,7 @@ import "./Dashboard.css";
 import avatar from "../../assets/avatar.svg";
 import { Link } from "react-router-dom";
 import { where } from "firebase/firestore";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import useAuthContext from "../../Hooks/ContextHooks/useAuthContext";
 import { useState } from "react";
 import fetching from "../../assets/fetching.svg";
@@ -60,7 +60,7 @@ const Dashboard = () => {
     }
 
     return <motion.div className="dashboard"
-        variants={pageVariant} initial='hide' animate='show'
+        variants={pageVariant} initial='hide' animate='show' id="style-1"
         exit='exit'>
         <h2>Dashboard</h2>
         <div className="dashboard_content">
@@ -107,7 +107,8 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </Link>
-                        })}
+                        })
+                    }
                 </div>
             </div>
         </div>
