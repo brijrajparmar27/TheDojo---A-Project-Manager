@@ -101,7 +101,7 @@ const Dashboard = () => {
                                     <div className="members_contain">
                                         {
                                             project.assigned.map((member) => {
-                                                return <img src={getMemberDP(member.value.image)} className="member_avatar" alt="image" key={member.value.uid} />
+                                                return <div style={{backgroundImage:`url(${getMemberDP(member.value.image)})`}} className="member_avatar" alt="image" key={member.value.uid} ></div>
                                             })
                                         }
                                     </div>

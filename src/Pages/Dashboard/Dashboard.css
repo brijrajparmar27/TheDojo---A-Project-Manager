@@ -99,4 +99,7 @@
     width: 30px;
     background-color: rgb(240, 240, 240);
     border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
