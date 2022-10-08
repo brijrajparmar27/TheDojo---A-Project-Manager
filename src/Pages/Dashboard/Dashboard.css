@@ -20,11 +20,12 @@
     margin: 50px;
 }
 
-.section_title{
+.dashboard .dashboard_content .section_title{
     display: flex;
     align-items: center;
     margin-left: 50px;
     margin-bottom: 30px;
+    gap: 30px;
 }
 
 .projects_section .projects_contain {
@@ -33,10 +34,6 @@
     gap: 10px;
     justify-content: center;
     padding-bottom: 50px;
-}
-.dashboard .section_title{
-    display: flex;
-    gap: 30px;
 }
 .filter_option{
     cursor: pointer;
