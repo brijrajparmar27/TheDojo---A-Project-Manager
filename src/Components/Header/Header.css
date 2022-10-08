@@ -11,7 +11,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    /* background-color: rgba(0, 0, 0, 0.5); */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 300;
 }
 .header .branding_contain {
@@ -72,4 +72,28 @@
     cursor: pointer;
     text-decoration: none;
     color: black;
+}
+
+.context_menus {
+    font-size: 30px;
+    display: none;
+}
+
+@media only screen and (max-width: 900px) {
+    .context_menus{
+        display: inline-block;
+    }
+    .branding_contain {
+        padding: 0px !important;
+    }
+    .header .online{
+        margin-right: 10px;
+    }
+    .header .hamburger{
+        margin-left: 10px;
+    }
+    .header .settings {
+        padding: 0px;
+        margin-right: 10px;
+    }
 }

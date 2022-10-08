@@ -2,8 +2,10 @@ import useTeamMembers from "../../Hooks/useTeamMembers";
 import "./Sidebar.css"
 import avatar from "../../assets/avatar.svg";
 import { motion } from "framer-motion";
+import useMenuProvider from "../../Hooks/ContextHooks/useMenuProvieder";
 const Sidebar = () => {
     const teamdata = useTeamMembers();
+    const { OnlineMenu } = useMenuProvider();
 
     const getDp = each => each.image ? each.image : avatar;
 
@@ -20,7 +22,7 @@ const Sidebar = () => {
     }
 
     return (
-        <motion.div className="sidebar" variants={navVariant} initial="hidden" animate="visible">
+        <motion.div className="sidebar" variants={navVariant} initial="hidden" animate="visible" style={{ display: OnlineMenu ? "block" : "none" }}>
             <h2 className="section_title">Team</h2>
             <div className="team_contain" id="style-1">
 

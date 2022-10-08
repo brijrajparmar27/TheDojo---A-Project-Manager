@@ -1,6 +1,6 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import { IoSettingsOutline } from "react-icons/io5";
+import { IoSettingsOutline, IoMenuOutline, IoPeopleOutline } from "react-icons/io5";
 import { useRef, useState } from "react";
 import useLogout from "../../Hooks/useLogout";
 import useUploadImage from "../../Hooks/useUploadImage";
@@ -8,6 +8,7 @@ import useAuthContext from "../../Hooks/ContextHooks/useAuthContext";
 import useUpdateInfo from "../../Hooks/useUpdateInfo";
 import useCollection from "../../Hooks/useCollection";
 import imageCompression from "browser-image-compression";
+import useMenuProvider from "../../Hooks/ContextHooks/useMenuProvieder";
 
 const Header = () => {
 
@@ -17,6 +18,7 @@ const Header = () => {
     const { updateDP } = useUpdateInfo();
     const { user, setUser } = useAuthContext();
     const { updateUser } = useCollection();
+    const { OnlineMenu, setOnlineMenu, HamburgerMenu, setHamburgerMenu } = useMenuProvider();
 
     const inputFile = useRef(null);
 
@@ -40,7 +42,7 @@ const Header = () => {
 
             if (validImages.includes(extention)) {
                 const compressedFile = await imageCompression(e.target.files[0], compressionParameters);
-                
+
                 let url = await upload("ProfilePictures/" + user.uid + ".jpeg", compressedFile);
                 updateDP(url);
                 updateUser(user.uid, { image: url });
@@ -52,6 +54,8 @@ const Header = () => {
     }
 
     return <div className="header">
+        <IoMenuOutline className="context_menus hamburger" onClick={() => { setHamburgerMenu(prev=>!prev) }} />
+
         <div className="branding_contain">
             <img src={logo} className="logo_img" />
             <h1 className="app_title">
@@ -59,8 +63,11 @@ const Header = () => {
             </h1>
         </div>
         {showPopup && <div className="backdrop" onClick={() => { setShowPopup(false) }}></div>}
+        {HamburgerMenu && <div className="backdrop" onClick={() => { setHamburgerMenu(false) }}></div>}
+        {OnlineMenu && <div className="backdrop" onClick={() => { setOnlineMenu(false) }}></div>}
 
         <div className="settings">
+            <IoPeopleOutline className="context_menus online" onClick={() => { setOnlineMenu(prev=>!prev) }} />
             <IoSettingsOutline onClick={() => { setShowPopup(prev => !prev) }} style={{ cursor: "pointer" }} />
             {showPopup && <div className="popup">
                 <p className="popup_option" onClick={onButtonClick}>

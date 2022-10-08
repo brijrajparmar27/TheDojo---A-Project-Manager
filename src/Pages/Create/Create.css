@@ -53,3 +53,12 @@
 .create .create_contain .loader {
     height: 50px;
 }
+
+@media only screen and (max-width: 900px) {
+    .create {
+        padding: 20px;
+    }
+    .create .submit_btn {
+        width: 100%;
+    }
+}
