@@ -18,7 +18,7 @@ const Dashboard = () => {
     const filterOptions = [
         {
             name: "All",
-            function: false
+            function: null
         },
         {
             name: "Completed",
