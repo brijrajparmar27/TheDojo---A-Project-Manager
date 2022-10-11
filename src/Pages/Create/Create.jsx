@@ -11,6 +11,7 @@ import loader from "../../assets/loader.svg";
 import { Timestamp } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { Suspense } from "react";
+import fetching from "../../assets/fetching.svg";
 
 const Create = () => {
     const [users, setUsers] = useState([]);
@@ -123,7 +124,7 @@ const Create = () => {
                 <p className="lable">Project Name</p>
                 <input type="text" name="name" className="tb" required />
             </div>
-            <Suspense fallback={<div/>}>
+            <Suspense fallback={<img src={fetching} alt="fetching data" className="loading_img"/>}>
                 <div className="input_contain">
                     <p className="lable">Details</p>
                     <RichText setRichData={setRichData} />
