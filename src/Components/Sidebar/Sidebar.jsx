@@ -23,22 +23,24 @@ const Sidebar = () => {
 
     return (
         <motion.div className="sidebar" variants={navVariant} initial="hidden" animate="visible" style={{ display: OnlineMenu ? "block" : "none" }}>
-            <h2 className="section_title">Team</h2>
-            <div className="team_contain" id="style-1">
+            <div className="side_content">
+                <h2 className="section_title">Team</h2>
+                <div className="team_contain" id="style-1">
 
-                {
-                    teamdata && teamdata.map((each) => {
-                        return (
-                            <div className="team_member" key={each.uid}>
-                                <div className="avatar_contain" style={{ backgroundImage: `url(${getDp(each)})` }}>
-                                    {each.online && <div className="online"></div>}
+                    {
+                        teamdata && teamdata.map((each) => {
+                            return (
+                                <div className="team_member" key={each.uid}>
+                                    <div className="avatar_contain" style={{ backgroundImage: `url(${getDp(each)})` }}>
+                                        {each.online && <div className="online"></div>}
+                                    </div>
+                                    <p className="member_name">{each.name}</p>
                                 </div>
-                                <p className="member_name">{each.name}</p>
-                            </div>
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
 
+                </div>
             </div>
         </motion.div>
     )
