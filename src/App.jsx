@@ -25,7 +25,7 @@ function App() {
     <>
       {AuthIsReady && <div className="App">
         <BrowserRouter>
-          {user && <Navbar />}
+          {user && <AnimatePresence><Navbar /></AnimatePresence>}
           <div className="main_content">
             {user && <Header />}
             <AnimatePresence mode='wait'>

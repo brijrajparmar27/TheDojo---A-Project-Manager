@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import useFetchProjects from "../../Hooks/useFetchProjects";
 import "./Dashboard.css";
 import avatar from "../../assets/avatar.svg";

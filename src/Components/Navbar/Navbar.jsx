@@ -11,7 +11,6 @@ import useMenuProvider from "../../Hooks/ContextHooks/useMenuProvieder";
 
 const Navbar = () => {
     const [credentials, setCredentials] = useState();
-    const { user } = useAuthContext();
     const { userData } = useCurrentUser();
     const { HamburgerMenu } = useMenuProvider();
 
