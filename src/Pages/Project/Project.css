@@ -194,3 +194,25 @@
     font-size: 12px;
     word-wrap: break-word;
 }
+
+@media only screen and (max-width: 900px) {
+    .project {
+        padding: 20px;
+        overflow-y: auto;
+    }
+    .project .project_section_contain{
+        flex-direction: column;
+        height: max-content;
+    }
+    .project .project_details_section {
+        flex: none !important;
+        height: 100vh !important;
+    }
+    .comments_section {
+        flex: none !important;
+    }
+    .comments_contain {
+        flex: none;
+        height: 300px;
+    }
+}
