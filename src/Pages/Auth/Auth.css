@@ -83,7 +83,7 @@
     font-size: 18px;
 }
 
-.auth .right_section .right_content .form_contain form .loader{
+.auth .right_section .right_content .form_contain form .loader {
     background-color: transparent;
     height: 70px;
 }
@@ -102,4 +102,17 @@
     cursor: pointer;
     overflow-y: hidden;
     height: 50px;
+}
+
+@media only screen and (max-width: 900px) {
+    .auth .left_section {
+        display: none;
+    }
+
+    .auth .right_section {
+        min-width: max-content !important;
+    }
+    .auth .right_section .right_content {
+        width: 300px;
+    }
 }
