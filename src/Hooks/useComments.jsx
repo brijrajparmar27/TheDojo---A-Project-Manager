@@ -15,7 +15,7 @@ const useComments = (pid) => {
                 data.push({ ...each.data(), Cid: each.id });
             });
             setComments([...data]);
-            console.log(data);
+            // console.log(data);
             setLoading(false);
             data = [];
         });

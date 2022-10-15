@@ -13,7 +13,7 @@ const useLogin = () => {
         signInWithEmailAndPassword(auth, email, pass)
             .then((user) => {
                 updateUser(user.user.uid, {online:true});
-                console.log(user)
+                // console.log(user)
                 setError(null);
                 setLoading(false)
             })

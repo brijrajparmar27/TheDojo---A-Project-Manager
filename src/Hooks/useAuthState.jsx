@@ -6,7 +6,7 @@ const useAuthState = ()=>{
     const {setUser,setAuthIsReady} = useAuthContext();
     const AuthStateListener = ()=>{
         onAuthStateChanged(auth,(user)=>{
-            console.log(user);
+            // console.log(user);
             setUser(user);
             setAuthIsReady(true);
         })

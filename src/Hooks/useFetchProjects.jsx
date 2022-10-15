@@ -11,14 +11,14 @@ const useFetchProjects = (filter) => {
         setLoading(true);
         let unsub;
         if (filter) {
-            console.log("fetch selected");
-            console.log(filter);
+            // console.log("fetch selected");
+            // console.log(filter);
             unsub = onSnapshot(query(collection(firestore, "projects"),filter), (doc) => {
                 let data = [];
                 doc.forEach((each) => {
                     data.push({ ...each.data(), uid: each.id });
                 });
-                console.log(data);
+                // console.log(data);
                 setProjects([...data]);
                 setLoading(false);
                 data = [];
@@ -26,7 +26,7 @@ const useFetchProjects = (filter) => {
         }
         else{
             
-            console.log("fetch all");
+            // console.log("fetch all");
             unsub = onSnapshot(collection(firestore, "projects"), (doc) => {
                 let data = [];
                 doc.forEach((each) => {

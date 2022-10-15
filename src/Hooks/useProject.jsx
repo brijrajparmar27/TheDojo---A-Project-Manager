@@ -29,7 +29,7 @@ const useProject = () => {
         setLoading(true);
         getDoc(doc(firestore, "projects", id)).then((doc)=>{
             if(doc.exists){
-                console.log(doc.data());
+                // console.log(doc.data());
                 setProjectDetails(doc.data());
             }
         })

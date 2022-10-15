@@ -6,7 +6,7 @@ const useUpdateInfo = () => {
         await updateProfile(auth.currentUser, {
             photoURL: url
         })
-        console.log("updated to ",url);
+        // console.log("updated to ",url);
     }
     const updateName = async (name) => {
         await updateProfile(auth.currentUser, { displayName: name })

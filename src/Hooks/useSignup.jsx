@@ -13,7 +13,7 @@ const useSignup = () => {
     const { registerUser, updateUser } = useCollection();
 
     const signup = ({ email, pass, username }) => {
-        console.log(email, pass);
+        // console.log(email, pass);
         setLoading(true)
         createUserWithEmailAndPassword(auth, email, pass).then((user) => {
             updateName(username);

@@ -48,7 +48,7 @@ const Header = () => {
                 updateUser(user.uid, { image: url });
             }
             else {
-                console.log("invalid format");
+                // console.log("invalid format");
             }
         }
     }
